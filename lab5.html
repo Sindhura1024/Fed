@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            var users = [
+	{"user": "krishna"},
+	{"user": "vijay"},
+	{"user": "vasu"},
+	{"user": "venu"},
+	{"user": "rajesh"},
+	{"user": "varun"},
+	{"user": "chandra"}
+	];
+
+let resultDetails = users.map(user => {
+    let mark = Math.random() * 100;
+    user.mark = mark;
+    return user
+});
+
+
+var selectedCandidate = resultDetails.filter(user => {
+	if(user.mark > 80){
+		return user;
+    }
+});
+console.log(selectedCandidate);
+const tasks = [
+  {
+    'name'     : 'Write for Envato Tuts+',
+    'duration' : 120
+  },
+  {
+    'name'     : 'Work out',
+    'duration' : 60
+  },
+  {
+    'name'     : 'Procrastinate on Duolingo',
+    'duration' : 240
+  }
+];
+const task_names = tasks.map(task => task.name)
+console.log(task_names)
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
+console.log(result);
+const currentYear = new Date().getFullYear();
+
+const userNames = users.reduce((filterUsers, user) => {
+  if (user.birthYear && (currentYear - user.birthYear) > 25) {
+    filterUsers.push(user.name);
+  }
+  return filterUsers;
+}, []);
+
+console.log(userNames);
+        </script>
+
+    </body>
+</html>

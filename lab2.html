@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>drag and drop</title>
+        <style>
+            #div1, #div2 {
+              float: left;
+              width: 200px;
+              height: 135px;
+              margin: 10px;
+              padding: 10px;
+              border: 1px solid black;
+            }
+            </style>
+    </head>
+    <body onload="start()">
+        <h4>Drag the image back and forth between the two div elements.</h4>
+        <div id="div1">
+            drop image here
+        </div>
+        <div id="div2">
+          <img src="nature.jpg" width="50%" height="50%" id="pic"/>
+            
+        </div>
+        <script>
+            var leftbox=document.getElementById("div1");
+            function start(){
+                var pic=document.getElementById("pic");
+                pic.addEventListener("dragstart",dragStart);
+                pic.addEventListener("dragend",dragEnd);
+                leftbox.addEventListener("dragover",dragOver);
+                leftbox.addEventListener("dragenter",dragEnter)
+                leftbox.addEventListener("dragleave",dragLeave)
+                leftbox.addEventListener("drop",dropEnd);
+
+            }
+            function dragStart(e){
+                e.dataTransfer.setData("any",e.target.id);
+            }
+            function dragEnd(e){
+                var rightbox=document.getElementById("div2");
+                rightbox.style.border="solid blue";
+            }
+            function dragOver(e){
+                e.preventDefault();
+                leftbox.style.border="solid yellow";
+            }
+            function dragEnter(e){
+                leftbox.style.border="solid green";
+            }
+            function dragLeave(e){
+                leftbox.style.border="solid red";
+            }
+            function dropEnd(e){
+                e.preventDefault();
+                var data=e.dataTransfer.getData("any");
+                e.target.appendChild(document.getElementById(data));
+            }
+        </script>
+    </body>
+</html>
